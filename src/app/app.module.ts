@@ -10,6 +10,8 @@ import { CriarPensamentosComponent } from './components/pensamentos/criar-pensam
 import { FormsModule } from '@angular/forms';
 import { ListarPensamentosComponent } from './components/pensamentos/listar-pensamentos/listar-pensamentos.component';
 import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-navegacao.component';
+import { PensamentoComponent } from './components/pensamentos/pensamento/pensamento.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-nave
     BarraNavegacaoComponent,
     RodapeComponent,
     CriarPensamentosComponent,
-    ListarPensamentosComponent
+    ListarPensamentosComponent,
+    PensamentoComponent
   ],
   imports: [
     BrowserModule,
