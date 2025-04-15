@@ -65,8 +65,8 @@
     </div>
 
     <div class="acoes">
-      <button class="botao">Salvar</button>
-      <button class="botao">Cancelar</button>
+      <button (click)="criarPensamento()" class="botao">Salvar</button>
+      <button (click)="cancelarPensamento($event)" class="botao">Cancelar</button>
     </div>
   </form>
 
