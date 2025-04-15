@@ -105,8 +105,7 @@ input[type='radio'] {
   display: flex;
   align-items: center;
   column-gap: 20px;
-  padding-bottom: 10px;
-  border: 1px solid red;
+  padding-bottom: .75rem;
 }
 
 .custom-radio {

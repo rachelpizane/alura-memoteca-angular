@@ -7,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CriarPensamentosComponent implements OnInit {
 
-  pensamentoModelo: any = {
-    conteudo: 'Aqui vai o contéudo',
+  pensamento: any = {
+    conteudo: '',
+    autoria: '',
+    modelo: ''
+  }
+
+  pensamentoModelo : any = {
+    conteudo: 'Aqui vai o conteúdo',
     autoria: 'Aqui vai a autoria',
   }
 
@@ -18,7 +24,7 @@ export class CriarPensamentosComponent implements OnInit {
   }
 
   criarPensamento(): void {
-    alert("Pensamento criado com sucesso!")
+    alert(`Pensamento criado com sucesso! \n\nConteudo: ${this.pensamento.conteudo} \nAutoria: ${this.pensamento.autoria} \nModelo: ${this.pensamento.modelo}`);
   }
 
   cancelarPensamento(event: Event) : void {
