@@ -5,7 +5,7 @@
 
   <form>
     <label for="pensamento">Pensamento</label>
-    <input type="textarea" class="input" id="pensamento" name="pensamento" placeholder="O que você está pensando?" />
+    <input type="textarea" class="input" id="pensamento" name="pensamento" placeholder="O que você está pensando?"/>
 
     <label for="autoria">Autoria</label>
     <input type="textarea" class="input" id="autoria" name="autoria" placeholder="Informe a autoria ou fonte" />
@@ -24,8 +24,8 @@
         <h3>Prévia:</h3>
         <div class="modelo modelo1 ff-roboto-mono">
           <img src="../../../../assets/imagens/modelo1.png" alt="Aspas azuis">
-          <p class="conteudo">teste</p>
-          <p class="autoria"><b></b></p>
+          <p class="conteudo">{{ pensamentoModelo.conteudo }}</p>
+          <p class="autoria"><b>{{ pensamentoModelo.autoria }}</b></p>
         </div>
       </div>
 
@@ -41,8 +41,8 @@
         <h3>Prévia:</h3>
         <div class="modelo modelo2 ff-roboto-mono">
           <img src="../../../../assets/imagens/modelo2.png" alt="Aspas azul claro">
-          <p class="conteudo"></p>
-          <p class="autoria"><b></b></p>
+          <p class="conteudo">{{ pensamentoModelo.conteudo }}</p>
+          <p class="autoria"><b>{{ pensamentoModelo.autoria }}</b></p>
         </div>
       </div>
 
@@ -58,8 +58,8 @@
         <h3>Prévia:</h3>
         <div class="modelo modelo3 ff-roboto-mono">
           <img src="../../../../assets/imagens/modelo3.png" alt="Aspas verdes">
-          <p class="conteudo"></p>
-          <p class="autoria"><b></b></p>
+          <p class="conteudo">{{ pensamentoModelo.conteudo }}</p>
+          <p class="autoria"><b>{{ pensamentoModelo.autoria }}</b></p>
         </div>
       </div>
     </div>
