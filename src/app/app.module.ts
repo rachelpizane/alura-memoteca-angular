@@ -9,12 +9,14 @@ import { RodapeComponent } from './components/rodape/rodape.component';
 import { CriarPensamentosComponent } from './components/pensamentos/criar-pensamentos/criar-pensamentos.component';
 import { FormsModule } from '@angular/forms';
 import { ListarPensamentosComponent } from './components/pensamentos/listar-pensamentos/listar-pensamentos.component';
+import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-navegacao.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CabecalhoComponent,
+    BarraNavegacaoComponent,
     RodapeComponent,
     CriarPensamentosComponent,
     ListarPensamentosComponent

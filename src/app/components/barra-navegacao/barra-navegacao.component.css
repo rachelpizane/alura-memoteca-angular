@@ -1,0 +1,35 @@
+.navbar {
+  background-color: #113969;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .75rem 1rem;
+  border-top: 1px solid #6BD1FF;
+  border-bottom: 1px solid #6BD1FF;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+li {
+  list-style: none;
+}
+
+.links-nav {
+  text-decoration: none;
+  color: white;
+  transition: .3s ease-in;
+  padding: 0 .2rem;
+}
+
+.active{
+  border-bottom: 2px solid white;
+  font-weight: bold;
+  color: white;
+  transition: .3s ease-in;
+}
+
