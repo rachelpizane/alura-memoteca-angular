@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Pensamento } from 'src/app/interfaces/pensamento';
 
 @Component({
@@ -8,6 +8,7 @@ import { Pensamento } from 'src/app/interfaces/pensamento';
 })
 export class PensamentoComponent implements OnInit {
   @Input() pensamento!: Pensamento;
+  @Output() emissaoExcluirPensamento = new EventEmitter<Pensamento>();
 
   constructor() { }
 
@@ -19,6 +20,10 @@ export class PensamentoComponent implements OnInit {
       return 'pensamento-g';
     }
     return 'pensamento-p';
+  }
+
+  emitirExcluirPensamento(): void {
+    this.emissaoExcluirPensamento.emit(this.pensamento);
   }
 
 }

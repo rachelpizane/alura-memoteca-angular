@@ -19,4 +19,7 @@ export class PensamentoService {
     return this.http.post<Pensamento>(this.urlApi, pensamento);
   }
 
+  delete(id:number): Observable<Pensamento> {
+    return this.http.delete<Pensamento>(`${this.urlApi}/${id}`);
+  }
 }

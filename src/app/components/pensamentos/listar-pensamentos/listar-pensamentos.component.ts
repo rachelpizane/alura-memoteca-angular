@@ -24,4 +24,10 @@ export class ListarPensamentosComponent implements OnInit {
     })
   }
 
+  excluirPensamento(pensamento: Pensamento): void {
+    this.pensamentoService.delete(pensamento.id!).subscribe(() => {
+      this.buscarTodosPensamentos();
+    });
+  }
+
 }
