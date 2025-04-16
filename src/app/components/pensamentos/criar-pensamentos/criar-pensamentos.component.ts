@@ -3,6 +3,7 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Pensamento } from 'src/app/interfaces/pensamento';
 import { PensamentoService } from 'src/app/services/pensamento/pensamento.service';
+import { minusculoValidator } from 'src/app/util/minusculoValidators';
 
 @Component({
   selector: 'app-criar-pensamentos',
@@ -21,6 +22,7 @@ export class CriarPensamentosComponent implements OnInit {
       autoria: ['', Validators.compose([
         Validators.required,
         Validators.minLength(3),
+        minusculoValidator
       ])],
       modelo: ['modelo1', Validators.compose([
         Validators.required,
@@ -38,19 +40,17 @@ export class CriarPensamentosComponent implements OnInit {
   }
 
   criarPensamento(): void {
-    if(this.formulario.invalid) {
-      return;
-    }
-
     const pensamento: Pensamento = this.formulario.value
 
-    this.pensamentoService.getAll().subscribe((pensamentos: Pensamento[]) => {
-      pensamento.id = pensamentos.length + 1;
-    })
+    if(this.formulario.invalid) {
+      this.pensamentoService.getAll().subscribe((pensamentos: Pensamento[]) => {
+        pensamento.id = pensamentos.length + 1;
+      })
 
-    this.pensamentoService.save(pensamento).subscribe(() => {
-      this.router.navigate(['/listar-pensamentos']);
-    });
+      this.pensamentoService.save(pensamento).subscribe(() => {
+        this.router.navigate(['/listar-pensamentos']);
+      });
+    }
   }
 
   cancelarPensamento(event: Event): void {
