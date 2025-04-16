@@ -14,6 +14,10 @@ export class ListarPensamentosComponent implements OnInit {
   constructor(private pensamentoService : PensamentoService) { }
 
   ngOnInit(): void {
+    this.buscarTodosPensamentos()
+  }
+
+  buscarTodosPensamentos(): void {
     this.pensamentoService.getAll().subscribe((pensamentos : Pensamento[]) => {
       this.pensamentos = pensamentos;
       this.exibirPensamentos = this.pensamentos.length > 0;
