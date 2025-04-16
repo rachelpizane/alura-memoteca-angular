@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Form, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Pensamento } from 'src/app/interfaces/pensamento';
 import { PensamentoService } from 'src/app/services/pensamento/pensamento.service';
@@ -9,24 +10,22 @@ import { PensamentoService } from 'src/app/services/pensamento/pensamento.servic
   styleUrls: ['./criar-pensamentos.component.css']
 })
 export class CriarPensamentosComponent implements OnInit {
-  pensamento: Pensamento = {
-    id: 0,
-    conteudo: '',
-    autoria: '',
-    modelo: ''
-  }
+  formulario!: FormGroup;
 
-  pensamentoModelo: Pensamento = {
-    conteudo: 'Aqui vai o conteúdo',
-    autoria: 'Aqui vai a autoria',
-  }
-
-  constructor(private pensamentoService: PensamentoService, private router: Router) { }
+  constructor(private pensamentoService: PensamentoService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.formulario = this.formBuilder.group({
+      id: [0],
+      conteudo: ['Formulário reativo'],
+      autoria: [''],
+      modelo: ['modelo1']
+    })
   }
 
-  criarPensamento(pensamento: Pensamento): void {
+  criarPensamento(): void {
+    const pensamento: Pensamento = this.formulario.value
+
     this.pensamentoService.getAll().subscribe((pensamentos: Pensamento[]) => {
       pensamento.id = pensamentos.length + 1;
     })

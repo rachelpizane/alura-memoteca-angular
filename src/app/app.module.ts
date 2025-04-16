@@ -11,10 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { ListarPensamentosComponent } from './components/pensamentos/listar-pensamentos/listar-pensamentos.component';
 import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-navegacao.component';
 import { PensamentoComponent } from './components/pensamentos/pensamento/pensamento.component';
-import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { EditarPensamentoComponent } from './components/pensamentos/editar-pensamento/editar-pensamento.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,9 +28,10 @@ import { EditarPensamentoComponent } from './components/pensamentos/editar-pensa
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
