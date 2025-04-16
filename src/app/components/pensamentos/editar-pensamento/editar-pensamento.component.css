@@ -135,3 +135,14 @@ img {
   max-width: 20%;
 }
 
+.mensagem__erro {
+  font-size: 12px;
+  margin-left: 5px;
+  color: rgb(231, 2, 2);
+  margin-top: -25px;
+  margin-bottom: 20px;
+}
+
+.botao__desabilitado {
+  margin: 5px;
+}
