@@ -12,6 +12,7 @@ import { ListarPensamentosComponent } from './components/pensamentos/listar-pens
 import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-navegacao.component';
 import { PensamentoComponent } from './components/pensamentos/pensamento/pensamento.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

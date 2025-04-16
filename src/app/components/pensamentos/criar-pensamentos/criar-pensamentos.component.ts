@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Pensamento } from 'src/app/interfaces/pensamento';
+import { PensamentoService } from 'src/app/services/pensamento/pensamento.service';
 
 @Component({
   selector: 'app-criar-pensamentos',
@@ -7,8 +9,8 @@ import { Pensamento } from 'src/app/interfaces/pensamento';
   styleUrls: ['./criar-pensamentos.component.css']
 })
 export class CriarPensamentosComponent implements OnInit {
-
   pensamento: Pensamento = {
+    id: 0,
     conteudo: '',
     autoria: '',
     modelo: ''
@@ -19,16 +21,22 @@ export class CriarPensamentosComponent implements OnInit {
     autoria: 'Aqui vai a autoria',
   }
 
-  constructor() { }
+  constructor(private pensamentoService: PensamentoService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  criarPensamento(): void {
-    alert(`Pensamento criado com sucesso! \n\nConteudo: ${this.pensamento.conteudo} \nAutoria: ${this.pensamento.autoria} \nModelo: ${this.pensamento.modelo}`);
+  criarPensamento(pensamento: Pensamento): void {
+    this.pensamentoService.getAll().subscribe((pensamentos: Pensamento[]) => {
+      pensamento.id = pensamentos.length + 1;
+    })
+
+    this.pensamentoService.save(pensamento).subscribe(() => {
+      this.router.navigate(['/listar-pensamentos']);
+    });
   }
 
-  cancelarPensamento(event: Event) : void {
+  cancelarPensamento(event: Event): void {
     event.preventDefault();
     alert("Pensamento cancelado com sucesso!")
     console.log(event)
