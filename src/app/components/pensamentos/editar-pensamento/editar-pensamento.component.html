@@ -36,6 +36,10 @@
       Autoria é obrigatório!
     </div>
 
+    <div class="mensagem__erro" *ngIf="pensamentoForm.get('autoria')?.hasError('minusculo') && pensamentoForm.get('autoria')?.touched">
+      Autoria aceita apenas letras minúsculas
+    </div>
+
     <label for="modelo">Selecione o modelo do card:</label>
     <div class="container-radio">
       <div class="radio-modelo">
@@ -102,7 +106,7 @@
       </div>
     </div>
     <div class="acoes">
-      <button disabled="{{ pensamentoForm.invalid }}" (click)="editarPensamento()" [ngClass]="habilitarBotao()">Salvar</button>
+      <button [disabled]="pensamentoForm.invalid" (click)="editarPensamento()" [ngClass]="habilitarBotao()">Salvar</button>
       <button (click)="cancelarEdicao()" class="botao">Cancelar</button>
     </div>
   </form>

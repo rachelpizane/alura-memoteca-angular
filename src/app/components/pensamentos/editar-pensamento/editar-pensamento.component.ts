@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Pensamento } from 'src/app/interfaces/pensamento';
 import { PensamentoService } from 'src/app/services/pensamento/pensamento.service';
+import { minusculoValidator } from 'src/app/util/minusculoValidators';
 
 @Component({
   selector: 'app-editar-pensamento',
@@ -10,13 +11,6 @@ import { PensamentoService } from 'src/app/services/pensamento/pensamento.servic
   styleUrls: ['./editar-pensamento.component.css']
 })
 export class EditarPensamentoComponent implements OnInit {
-  pensamento: Pensamento = {
-    id: 0,
-    conteudo: '',
-    autoria: '',
-    modelo: ''
-  }
-
   pensamentoForm!: FormGroup;
 
   constructor(private pensamentoService: PensamentoService, private activatedRoute: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) { }
@@ -24,8 +18,9 @@ export class EditarPensamentoComponent implements OnInit {
   ngOnInit(): void {
     const id: number = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.pensamentoForm = this.formBuilder.group({
+      id: [id],
       conteudo: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(300)])],
-      autoria: ['', Validators.required],
+      autoria: ['', Validators.compose([Validators.required, minusculoValidator])],
       modelo: ['', Validators.pattern('modelo1|modelo2|modelo3')]
     });
 
@@ -37,6 +32,7 @@ export class EditarPensamentoComponent implements OnInit {
   buscarPensamento(id: number) {
     this.pensamentoService.getById(id).subscribe((pensamento: Pensamento) => {
       this.pensamentoForm.patchValue({
+        id: pensamento.id,
         conteudo: pensamento.conteudo,
         autoria: pensamento.autoria,
         modelo: pensamento.modelo
@@ -45,13 +41,11 @@ export class EditarPensamentoComponent implements OnInit {
   }
 
   editarPensamento(): void {
-    if (this.pensamentoForm.invalid) {
-      return;
+    if (this.pensamentoForm.valid) {
+      this.pensamentoService.update(this.pensamentoForm.value).subscribe(() => {
+        this.router.navigate(['/listar-pensamentos']);
+      });
     }
-
-    this.pensamentoService.update(this.pensamento).subscribe(() => {
-      this.router.navigate(['/listar-pensamentos']);
-    });
   }
 
   cancelarEdicao(): void  {
