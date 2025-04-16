@@ -13,6 +13,7 @@ import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-nave
 import { PensamentoComponent } from './components/pensamentos/pensamento/pensamento.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { EditarPensamentoComponent } from './components/pensamentos/editar-pensamento/editar-pensamento.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     RodapeComponent,
     CriarPensamentosComponent,
     ListarPensamentosComponent,
-    PensamentoComponent
+    PensamentoComponent,
+    EditarPensamentoComponent
   ],
   imports: [
     BrowserModule,
