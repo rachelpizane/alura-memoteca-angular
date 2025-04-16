@@ -22,4 +22,12 @@ export class PensamentoService {
   delete(id:number): Observable<Pensamento> {
     return this.http.delete<Pensamento>(`${this.urlApi}/${id}`);
   }
+
+  update(pensamento: Pensamento): Observable<Pensamento> {
+    return this.http.put<Pensamento>(`${this.urlApi}/${pensamento.id}`, pensamento);
+  }
+
+  getById(id: number): Observable<Pensamento> {
+    return this.http.get<Pensamento>(`${this.urlApi}/${id}`);
+  }
 }
