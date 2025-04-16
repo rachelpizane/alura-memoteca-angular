@@ -1,0 +1,53 @@
+{
+  "pensamentos": [
+    {
+      "id": 1,
+      "conteudo": "Hoje eu sonhei que tinha ganhado uma bicicleta nova",
+      "autoria": "João da Silva",
+      "modelo": "modelo1"
+    },
+    {
+      "id": 2,
+      "conteudo": "Queria comer um cachorro quente",
+      "autoria": "Maria Oliveira",
+      "modelo": "modelo2"
+    },
+    {
+      "id": 3,
+      "conteudo": "A vida é como andar de bicicleta: para manter o equilíbrio, você precisa continuar se movendo.",
+      "autoria": "Albert Einstein",
+      "modelo": "modelo3"
+    },
+    {
+      "id": 4,
+      "conteudo": "Hoje eu sonhei que estava voando em um balão de ar quente sobre as montanhas.",
+      "autoria": "Ana Costa",
+      "modelo": "modelo1"
+    },
+    {
+      "id": 5,
+      "conteudo": "A vida é cheia de altos e baixos, mas o importante é aprender a lidar com as dificuldades e encontrar a beleza nas pequenas coisas. Às vezes, um simples sorriso pode iluminar o dia de alguém e fazer toda a diferença. Então, não se esqueça de espalhar amor e positividade por onde passar.",
+      "autoria": "Dalai Lama",
+      "modelo": "modelo2"
+    },
+    {
+      "id": 6,
+      "conteudo": "Sonhar é acordar para a vida.",
+      "autoria": "Antoine de Saint-Exupéry",
+      "modelo": "modelo3"
+    },
+    {
+      "id": 7,
+      "conteudo": "Hoje eu pensei em como seria bom ter um dia inteiro só para ler livros.",
+      "autoria": "Carlos Alberto",
+      "modelo": "modelo1"
+    },
+    {
+
+      "id": 8,
+      "conteudo": "A vida é uma jornada, não um destino. Aproveite cada passo do caminho e não se preocupe tanto com o que está por vir. Às vezes, as melhores experiências vêm das coisas inesperadas que acontecem ao longo do caminho. Então, respire fundo, sorria e siga em frente.",
+      "autoria": "Mário Quintana",
+      "modelo": "modelo2"
+    }
+  ]
+}
