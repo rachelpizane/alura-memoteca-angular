@@ -1,0 +1,15 @@
+.carregar-mais {
+  margin: 1rem 0 2rem;
+  max-width: 150px;
+  padding: .75rem;
+  border-radius: .5rem;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+.mensagem-center {
+  text-align: center;
+  padding: 1rem 0 2rem;
+  font-style: italic;
+}

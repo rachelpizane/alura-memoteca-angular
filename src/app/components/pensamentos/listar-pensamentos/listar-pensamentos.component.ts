@@ -9,9 +9,10 @@ import { PensamentoService } from 'src/app/services/pensamento/pensamento.servic
 })
 export class ListarPensamentosComponent implements OnInit {
   pensamentos!: Pensamento[];
-  paginaAtual: number = 1;
-  limitePensamentos: number = 5;
   exibirPensamentos!: boolean;
+  paginaAtual: number = 1;
+  limitePensamentos: number = 2;
+  haMaisPensamentos: boolean = true;
 
   constructor(private pensamentoService : PensamentoService) { }
 
@@ -32,4 +33,10 @@ export class ListarPensamentosComponent implements OnInit {
     });
   }
 
+  carregarMaisPensamentos(): void {
+    this.pensamentoService.getByPage(++this.paginaAtual, this.limitePensamentos).subscribe((novosPensamentos: Pensamento[]) => {
+      this.pensamentos.push(...novosPensamentos);
+      this.haMaisPensamentos = novosPensamentos.length === this.limitePensamentos;
+    });
+  }
 }

@@ -5,12 +5,14 @@
   </header>
 
   <div class="mural" *ngIf="exibirPensamentos; else semPensamentos ">
-    <app-pensamento *ngFor="let pensamento of pensamentos" [pensamento]="pensamento" (emissaoExcluirPensamento)="excluirPensamento($event)"></app-pensamento>
+    <app-pensamento *ngFor="let pensamento of pensamentos" [pensamento]="pensamento"
+      (emissaoExcluirPensamento)="excluirPensamento($event)"></app-pensamento>
   </div>
-
-  <ng-template #semPensamentos>
-    <div class="ff-inter" sem-pensamentos>
-      <p>Ainda não há pensamentos cadastrados!</p>
-    </div>
-  </ng-template>
 </section>
+<app-botao-carregar-mais [haMaisPensamentos]="haMaisPensamentos" (click)="carregarMaisPensamentos()"></app-botao-carregar-mais>
+
+<ng-template #semPensamentos>
+  <div class="ff-inter" sem-pensamentos>
+    <p>Ainda não há pensamentos cadastrados!</p>
+  </div>
+</ng-template>

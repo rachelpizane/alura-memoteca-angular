@@ -14,6 +14,7 @@ import { PensamentoComponent } from './components/pensamentos/pensamento/pensame
 import { HttpClientModule } from '@angular/common/http';
 import { EditarPensamentoComponent } from './components/pensamentos/editar-pensamento/editar-pensamento.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BotaoCarregarMaisComponent } from './components/botao-carregar-mais/botao-carregar-mais.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CriarPensamentosComponent,
     ListarPensamentosComponent,
     PensamentoComponent,
-    EditarPensamentoComponent
+    EditarPensamentoComponent,
+    BotaoCarregarMaisComponent
   ],
   imports: [
     BrowserModule,
