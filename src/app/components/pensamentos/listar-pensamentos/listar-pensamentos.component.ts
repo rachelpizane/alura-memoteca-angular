@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Modificacao } from 'src/app/interfaces/modificacao';
 import { Pensamento } from 'src/app/interfaces/pensamento';
 import { PensamentoService } from 'src/app/services/pensamento/pensamento.service';
@@ -19,16 +20,19 @@ export class ListarPensamentosComponent implements OnInit {
   filtro: string = '';
   favorito: boolean = false;
 
-  constructor(private pensamentoService: PensamentoService) { }
+  constructor(private pensamentoService: PensamentoService, private router: Router) { }
 
   ngOnInit(): void {
     this.buscarTodosPensamentos()
   }
 
+  recarregarComponente(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([this.router.url])
+  }
+
   buscarTodosPensamentos(): void {
-    this.haMaisPensamentos = true;
-    this.paginaAtual = 1;
-    this.favorito = false;
 
     this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos).subscribe((pensamentos: Pensamento[]) => {
       this.pensamentos = pensamentos;
