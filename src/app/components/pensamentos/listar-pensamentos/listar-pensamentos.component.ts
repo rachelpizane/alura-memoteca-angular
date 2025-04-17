@@ -12,9 +12,10 @@ export class ListarPensamentosComponent implements OnInit {
   pensamentos!: Pensamento[];
   exibirPensamentos!: boolean;
   paginaAtual: number = 1;
-  limitePensamentos: number = 2;
+  limitePensamentos: number = 3;
   haMaisPensamentos: boolean = true;
   filtro: string = '';
+  favorito: boolean = false;
 
   constructor(private pensamentoService: PensamentoService) { }
 
@@ -23,10 +24,34 @@ export class ListarPensamentosComponent implements OnInit {
   }
 
   buscarTodosPensamentos(): void {
+    this.haMaisPensamentos = true;
+    this.paginaAtual = 1;
+    this.favorito = false;
+
     this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos).subscribe((pensamentos: Pensamento[]) => {
       this.pensamentos = pensamentos;
       this.exibirPensamentos = this.pensamentos.length > 0;
     })
+  }
+
+  carregarMaisPensamentos(): void {
+    this.pensamentoService.getByPage(++this.paginaAtual, this.limitePensamentos, this.filtro, this.favorito).subscribe((novosPensamentos: Pensamento[]) => {
+      this.pensamentos.push(...novosPensamentos);
+      this.haMaisPensamentos = novosPensamentos.length === this.limitePensamentos;
+    });
+  }
+
+  filtrarPensamentos(): void {
+    this.haMaisPensamentos = true;
+    this.paginaAtual = 1;
+    this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos, this.filtro, this.favorito).subscribe((pensamentosFiltrados: Pensamento[]) => {
+      this.pensamentos = pensamentosFiltrados;
+    });
+  }
+
+  buscarPensamentosFavoritados(): void {
+    this.favorito = true;
+    this.filtrarPensamentos();
   }
 
   modificarPensamento(modificacao: Modificacao): void {
@@ -48,7 +73,6 @@ export class ListarPensamentosComponent implements OnInit {
   atualizarFavoritoPensamento(pensamento: Pensamento): void {
     console.log(pensamento)
     this.pensamentoService.update(pensamento).subscribe(() => {
-      console.log("atualizado");
     });
   }
 
@@ -58,18 +82,6 @@ export class ListarPensamentosComponent implements OnInit {
     });
   }
 
-  carregarMaisPensamentos(): void {
-    this.pensamentoService.getByPage(++this.paginaAtual, this.limitePensamentos, this.filtro).subscribe((novosPensamentos: Pensamento[]) => {
-      this.pensamentos.push(...novosPensamentos);
-      this.haMaisPensamentos = novosPensamentos.length === this.limitePensamentos;
-    });
-  }
 
-  filtrarPensamentos(): void {
-    this.haMaisPensamentos = true;
-    this.paginaAtual = 1;
-    this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos, this.filtro).subscribe((pensamentosFiltrados: Pensamento[]) => {
-      this.pensamentos = pensamentosFiltrados;
-    });
-  }
+
 }
