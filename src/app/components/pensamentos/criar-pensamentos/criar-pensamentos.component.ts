@@ -28,6 +28,7 @@ export class CriarPensamentosComponent implements OnInit {
         Validators.required,
         Validators.pattern('modelo1|modelo2|modelo3')
       ]],
+      favorito: [false]
     })
   }
 

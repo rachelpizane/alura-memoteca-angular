@@ -21,7 +21,8 @@ export class EditarPensamentoComponent implements OnInit {
       id: [id],
       conteudo: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
       autoria: ['', [Validators.required, minusculoValidator]],
-      modelo: ['', Validators.pattern('modelo1|modelo2|modelo3')]
+      modelo: ['', Validators.pattern('modelo1|modelo2|modelo3')],
+      favorito: [false]
     });
 
     if (id) {
