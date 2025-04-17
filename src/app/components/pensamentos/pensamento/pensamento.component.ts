@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Modificacao } from 'src/app/interfaces/modificacao';
 import { Pensamento } from 'src/app/interfaces/pensamento';
 
 @Component({
@@ -8,10 +9,14 @@ import { Pensamento } from 'src/app/interfaces/pensamento';
 })
 export class PensamentoComponent implements OnInit {
   @Input() pensamento!: Pensamento;
-  @Output() emissaoExcluirPensamento = new EventEmitter<Pensamento>();
+  @Output() emissaoModificarPensamento = new EventEmitter<Modificacao>();
+
+  modificacao: Modificacao = {
+    modificacao: '',
+    pensamento: this.pensamento
+  }
 
   constructor() { }
-
   ngOnInit(): void {
   }
 
@@ -23,10 +28,22 @@ export class PensamentoComponent implements OnInit {
   }
 
   emitirExcluirPensamento(): void {
-    this.emissaoExcluirPensamento.emit(this.pensamento);
+    this.modificacao.modificacao = "excluir";
+    this.modificacao.pensamento = this.pensamento;
+
+    this.emissaoModificarPensamento.emit(this.modificacao);
   }
 
   mudarIconeFavorito(): string {
     return this.pensamento.favorito ? 'ativo' : 'inativo';
+  }
+
+  emitirAtualizarFavoritoPensamento(): void {
+    this.pensamento.favorito = !this.pensamento.favorito;
+
+    this.modificacao.modificacao = "favoritar";
+    this.modificacao.pensamento = this.pensamento;
+
+    this.emissaoModificarPensamento.emit(this.modificacao);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Modificacao } from 'src/app/interfaces/modificacao';
 import { Pensamento } from 'src/app/interfaces/pensamento';
 import { PensamentoService } from 'src/app/services/pensamento/pensamento.service';
 
@@ -15,17 +16,40 @@ export class ListarPensamentosComponent implements OnInit {
   haMaisPensamentos: boolean = true;
   filtro: string = '';
 
-  constructor(private pensamentoService : PensamentoService) { }
+  constructor(private pensamentoService: PensamentoService) { }
 
   ngOnInit(): void {
     this.buscarTodosPensamentos()
   }
 
   buscarTodosPensamentos(): void {
-    this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos).subscribe((pensamentos : Pensamento[]) => {
+    this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos).subscribe((pensamentos: Pensamento[]) => {
       this.pensamentos = pensamentos;
       this.exibirPensamentos = this.pensamentos.length > 0;
     })
+  }
+
+  modificarPensamento(modificacao: Modificacao): void {
+    const pensamento: Pensamento = modificacao.pensamento;
+
+    switch (modificacao.modificacao) {
+      case 'excluir':
+        this.excluirPensamento(pensamento);
+        break;
+      case 'favoritar':
+        this.atualizarFavoritoPensamento(pensamento);
+        break;
+      default:
+        console.error('Ação não reconhecida');
+        break;
+    }
+  }
+
+  atualizarFavoritoPensamento(pensamento: Pensamento): void {
+    console.log(pensamento)
+    this.pensamentoService.update(pensamento).subscribe(() => {
+      console.log("atualizado");
+    });
   }
 
   excluirPensamento(pensamento: Pensamento): void {

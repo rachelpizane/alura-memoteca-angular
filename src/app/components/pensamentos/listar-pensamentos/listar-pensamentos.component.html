@@ -10,7 +10,7 @@
 
   <div class="mural" *ngIf="exibirPensamentos; else semPensamentos ">
     <app-pensamento *ngFor="let pensamento of pensamentos" [pensamento]="pensamento"
-      (emissaoExcluirPensamento)="excluirPensamento($event)"></app-pensamento>
+      (emissaoModificarPensamento)="modificarPensamento($event)"></app-pensamento>
   </div>
 </section>
 <app-botao-carregar-mais [haMaisPensamentos]="haMaisPensamentos" (click)="carregarMaisPensamentos()"></app-botao-carregar-mais>
