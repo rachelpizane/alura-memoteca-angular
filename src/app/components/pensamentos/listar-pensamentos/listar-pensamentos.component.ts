@@ -11,6 +11,7 @@ import { PensamentoService } from 'src/app/services/pensamento/pensamento.servic
 })
 export class ListarPensamentosComponent implements OnInit {
   titulo: string = 'Meu Mural';
+  avisoPensamentos: string = 'Não há pensamentos cadastrados!';
 
   pensamentos!: Pensamento[];
   pensamentosFavoritos!: Pensamento[];
@@ -37,13 +38,15 @@ export class ListarPensamentosComponent implements OnInit {
   buscarTodosPensamentos(): void {
     this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos).subscribe((pensamentos: Pensamento[]) => {
       this.pensamentos = pensamentos;
-      this.exibirPensamentos = this.pensamentos.length > 0;
+
+      this.atualizarExibicaoPensamentos('Não há pensamentos cadastrados!');
     })
   }
 
   carregarMaisPensamentos(): void {
     this.pensamentoService.getByPage(++this.paginaAtual, this.limitePensamentos, this.filtro, this.favorito).subscribe((novosPensamentos: Pensamento[]) => {
       this.pensamentos.push(...novosPensamentos);
+
       this.haMaisPensamentos = novosPensamentos.length === this.limitePensamentos;
     });
   }
@@ -53,6 +56,8 @@ export class ListarPensamentosComponent implements OnInit {
     this.paginaAtual = 1;
     this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos, this.filtro, this.favorito).subscribe((pensamentosFiltrados: Pensamento[]) => {
       this.pensamentos = pensamentosFiltrados;
+
+      this.atualizarExibicaoPensamentos('Não há pensamentos correspondentes ao filtro!');
     });
   }
 
@@ -62,6 +67,8 @@ export class ListarPensamentosComponent implements OnInit {
     this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos, this.filtro, this.favorito).subscribe((pensamentosFiltrados: Pensamento[]) => {
       this.pensamentos = pensamentosFiltrados;
       this.pensamentosFavoritos = pensamentosFiltrados;
+
+      this.atualizarExibicaoPensamentos("Não há pensamentos favoritos cadastrados!");
     });
   }
 
@@ -84,6 +91,8 @@ export class ListarPensamentosComponent implements OnInit {
   atualizarFavoritoPensamento(pensamento: Pensamento): void {
     this.pensamentoService.update(pensamento).subscribe(() => {
       this.pensamentosFavoritos.splice(this.pensamentosFavoritos.indexOf(pensamento), 1);
+
+      this.atualizarExibicaoPensamentos("Não há pensamentos favoritos cadastrados!");
     });
   }
 
@@ -93,6 +102,11 @@ export class ListarPensamentosComponent implements OnInit {
     });
   }
 
+  atualizarExibicaoPensamentos(avisoPersonalizado: string): void {
+    this.exibirPensamentos = this.pensamentos.length > 0;
 
-
+    if(!this.exibirPensamentos) {
+      this.avisoPensamentos = avisoPersonalizado;
+    }
+  }
 }
