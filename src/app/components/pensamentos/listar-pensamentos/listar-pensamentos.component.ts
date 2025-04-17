@@ -10,6 +10,8 @@ import { PensamentoService } from 'src/app/services/pensamento/pensamento.servic
   styleUrls: ['./listar-pensamentos.component.css']
 })
 export class ListarPensamentosComponent implements OnInit {
+  titulo: string = 'Meu Mural';
+
   pensamentos!: Pensamento[];
   pensamentosFavoritos!: Pensamento[];
 
@@ -33,7 +35,6 @@ export class ListarPensamentosComponent implements OnInit {
   }
 
   buscarTodosPensamentos(): void {
-
     this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos).subscribe((pensamentos: Pensamento[]) => {
       this.pensamentos = pensamentos;
       this.exibirPensamentos = this.pensamentos.length > 0;
@@ -56,6 +57,7 @@ export class ListarPensamentosComponent implements OnInit {
   }
 
   buscarPensamentosFavoritados(): void {
+    this.titulo = 'Meus Favoritos';
     this.favorito = true;
     this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos, this.filtro, this.favorito).subscribe((pensamentosFiltrados: Pensamento[]) => {
       this.pensamentos = pensamentosFiltrados;
