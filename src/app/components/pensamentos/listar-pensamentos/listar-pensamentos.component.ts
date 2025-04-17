@@ -10,6 +10,8 @@ import { PensamentoService } from 'src/app/services/pensamento/pensamento.servic
 })
 export class ListarPensamentosComponent implements OnInit {
   pensamentos!: Pensamento[];
+  pensamentosFavoritos!: Pensamento[];
+
   exibirPensamentos!: boolean;
   paginaAtual: number = 1;
   limitePensamentos: number = 3;
@@ -51,7 +53,10 @@ export class ListarPensamentosComponent implements OnInit {
 
   buscarPensamentosFavoritados(): void {
     this.favorito = true;
-    this.filtrarPensamentos();
+    this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos, this.filtro, this.favorito).subscribe((pensamentosFiltrados: Pensamento[]) => {
+      this.pensamentos = pensamentosFiltrados;
+      this.pensamentosFavoritos = pensamentosFiltrados;
+    });
   }
 
   modificarPensamento(modificacao: Modificacao): void {
@@ -71,8 +76,8 @@ export class ListarPensamentosComponent implements OnInit {
   }
 
   atualizarFavoritoPensamento(pensamento: Pensamento): void {
-    console.log(pensamento)
     this.pensamentoService.update(pensamento).subscribe(() => {
+      this.pensamentosFavoritos.splice(this.pensamentosFavoritos.indexOf(pensamento), 1);
     });
   }
 
