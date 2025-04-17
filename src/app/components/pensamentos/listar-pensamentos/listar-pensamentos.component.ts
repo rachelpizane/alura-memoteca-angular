@@ -9,6 +9,8 @@ import { PensamentoService } from 'src/app/services/pensamento/pensamento.servic
 })
 export class ListarPensamentosComponent implements OnInit {
   pensamentos!: Pensamento[];
+  paginaAtual: number = 1;
+  limitePensamentos: number = 5;
   exibirPensamentos!: boolean;
 
   constructor(private pensamentoService : PensamentoService) { }
@@ -18,7 +20,7 @@ export class ListarPensamentosComponent implements OnInit {
   }
 
   buscarTodosPensamentos(): void {
-    this.pensamentoService.getAll().subscribe((pensamentos : Pensamento[]) => {
+    this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos).subscribe((pensamentos : Pensamento[]) => {
       this.pensamentos = pensamentos;
       this.exibirPensamentos = this.pensamentos.length > 0;
     })
