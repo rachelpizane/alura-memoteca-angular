@@ -26,4 +26,7 @@ export class PensamentoComponent implements OnInit {
     this.emissaoExcluirPensamento.emit(this.pensamento);
   }
 
+  mudarIconeFavorito(): string {
+    return this.pensamento.favorito ? 'ativo' : 'inativo';
+  }
 }
