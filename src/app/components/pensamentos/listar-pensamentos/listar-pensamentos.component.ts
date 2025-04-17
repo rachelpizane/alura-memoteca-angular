@@ -13,6 +13,7 @@ export class ListarPensamentosComponent implements OnInit {
   paginaAtual: number = 1;
   limitePensamentos: number = 2;
   haMaisPensamentos: boolean = true;
+  filtro: string = '';
 
   constructor(private pensamentoService : PensamentoService) { }
 
