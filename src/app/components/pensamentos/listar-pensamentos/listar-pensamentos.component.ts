@@ -35,9 +35,17 @@ export class ListarPensamentosComponent implements OnInit {
   }
 
   carregarMaisPensamentos(): void {
-    this.pensamentoService.getByPage(++this.paginaAtual, this.limitePensamentos).subscribe((novosPensamentos: Pensamento[]) => {
+    this.pensamentoService.getByPage(++this.paginaAtual, this.limitePensamentos, this.filtro).subscribe((novosPensamentos: Pensamento[]) => {
       this.pensamentos.push(...novosPensamentos);
       this.haMaisPensamentos = novosPensamentos.length === this.limitePensamentos;
+    });
+  }
+
+  filtrarPensamentos(): void {
+    this.haMaisPensamentos = true;
+    this.paginaAtual = 1;
+    this.pensamentoService.getByPage(this.paginaAtual, this.limitePensamentos, this.filtro).subscribe((pensamentosFiltrados: Pensamento[]) => {
+      this.pensamentos = pensamentosFiltrados;
     });
   }
 }
