@@ -19,15 +19,15 @@ export class CriarPensamentosComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       id: [0],
       conteudo: ['', Validators.required],
-      autoria: ['', Validators.compose([
+      autoria: ['',[
         Validators.required,
         Validators.minLength(3),
         minusculoValidator
-      ])],
-      modelo: ['modelo1', Validators.compose([
+      ]],
+      modelo: ['modelo1', [
         Validators.required,
         Validators.pattern('modelo1|modelo2|modelo3')
-      ])],
+      ]],
     })
   }
 
@@ -42,15 +42,13 @@ export class CriarPensamentosComponent implements OnInit {
   criarPensamento(): void {
     const pensamento: Pensamento = this.formulario.value
 
-    if(this.formulario.invalid) {
-      this.pensamentoService.getAll().subscribe((pensamentos: Pensamento[]) => {
-        pensamento.id = pensamentos.length + 1;
-      })
+    this.pensamentoService.getAll().subscribe((pensamentos: Pensamento[]) => {
+      pensamento.id = pensamentos.length + 1;
+    })
 
-      this.pensamentoService.save(pensamento).subscribe(() => {
-        this.router.navigate(['/listar-pensamentos']);
-      });
-    }
+    this.pensamentoService.save(pensamento).subscribe(() => {
+      this.router.navigate(['/listar-pensamentos']);
+    });
   }
 
   cancelarPensamento(event: Event): void {

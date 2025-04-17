@@ -19,8 +19,8 @@ export class EditarPensamentoComponent implements OnInit {
     const id: number = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.pensamentoForm = this.formBuilder.group({
       id: [id],
-      conteudo: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(300)])],
-      autoria: ['', Validators.compose([Validators.required, minusculoValidator])],
+      conteudo: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(300)]],
+      autoria: ['', [Validators.required, minusculoValidator]],
       modelo: ['', Validators.pattern('modelo1|modelo2|modelo3')]
     });
 
@@ -41,14 +41,13 @@ export class EditarPensamentoComponent implements OnInit {
   }
 
   editarPensamento(): void {
-    if (this.pensamentoForm.valid) {
-      this.pensamentoService.update(this.pensamentoForm.value).subscribe(() => {
-        this.router.navigate(['/listar-pensamentos']);
-      });
-    }
+    this.pensamentoService.update(this.pensamentoForm.value).subscribe(() => {
+      this.router.navigate(['/listar-pensamentos']);
+    });
+
   }
 
-  cancelarEdicao(): void  {
+  cancelarEdicao(): void {
     this.router.navigate(['/listar-pensamentos']);
   }
 
